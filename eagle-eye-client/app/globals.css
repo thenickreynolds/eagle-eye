@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-BlackIta.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-BoldIta.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Hairline.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-HairlineIta.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-LightIta.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-MediumIta.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-RegularIta.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Thin.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-ThinIta.otf") format("opentype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-Ultra.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginto";
+  src: url("/fonts/ABCGintoNord-UltraIta.otf") format("opentype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+:root {
+  --background: linear-gradient(to bottom, #3442d9, #232145);
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: linear-gradient(to bottom, #3442d9, #232145);
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: "Ginto", sans-serif;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  font-size: 2.1875rem;
+  font-weight: 800;
+  line-height: 120%;
+}
+
+.button {
+  background-color: #5965f2;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: #6a74f5;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

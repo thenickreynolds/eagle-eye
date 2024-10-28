@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(to bottom, #3442d9, #232145);
 }
 
 h1 {
@@ -40,6 +41,10 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.discord_logo {
+  height: 3em;
 }
 
 .logo {

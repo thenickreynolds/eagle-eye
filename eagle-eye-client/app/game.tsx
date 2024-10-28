@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Splash from "./splash";
 import GameLevel from "./gameLevel";
+import Image from "next/image";
 
 export enum AnswerOption {
   Left,
@@ -60,7 +61,7 @@ export default function Game() {
         <>
           <div className="flex flex-row">
             <div className="grow">
-              <img
+              <Image
                 className="mb-2"
                 src="/discord-logo-white.svg"
                 alt="Discord Logo"

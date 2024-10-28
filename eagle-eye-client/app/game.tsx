@@ -4,6 +4,7 @@ import { useState } from "react";
 import Splash from "./splash";
 import GameLevel from "./gameLevel";
 import Image from "next/image";
+import AppButton from "./appButton";
 
 export enum AnswerOption {
   Left,
@@ -51,6 +52,11 @@ export default function Game() {
       setGameState(GameState.End);
     }
   };
+  const reset = () => {
+    setGameState(GameState.Splash);
+    setScore(0);
+    setLevel(0);
+  };
 
   return (
     <div className="m-12 flex flex-col max-w-2xl">
@@ -78,7 +84,13 @@ export default function Game() {
           />
         </>
       )}
-      {gameState === GameState.End && <p>End</p>}
+      {gameState === GameState.End && (
+        <div>
+          <h1>Game Over</h1>
+          <div>Score: {score}</div>
+          <AppButton text="Play Again" onClick={() => reset()} />
+        </div>
+      )}
     </div>
   );
 }

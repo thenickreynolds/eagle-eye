@@ -1,5 +1,4 @@
 import AppButton from "./appButton";
-import Image from "next/image";
 
 export default function Splash({ onStart }: { onStart: () => void }) {
   return (

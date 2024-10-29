@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Splash from "./splash";
 import GameLevel from "./gameLevel";
-import Image from "next/image";
 import AppButton from "./appButton";
-import Score from "./score";
 import Header from "./header";
 
 export enum AnswerOption {

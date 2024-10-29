@@ -96,7 +96,7 @@ export default function GameLevel({
       </div>
 
       <div
-        className={classNames("flex flex-col gap-4", {
+        className={classNames("flex flex-col gap-4 self-start", {
           invisible: !hasAnswered,
         })}
       >

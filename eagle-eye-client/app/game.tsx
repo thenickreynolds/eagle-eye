@@ -59,14 +59,17 @@ export default function Game() {
   };
 
   return (
-    <div className="m-12 flex flex-col max-w-2xl">
+    // TODO fix text colors
+    // TODO add background images
+    // TOOD add app frame
+    <div className="m-12 flex flex-col max-w-2xl text-white">
       {gameState === GameState.Splash && (
         <Splash onStart={() => setGameState(GameState.Playing)} />
       )}
       {gameState === GameState.Playing && (
         <>
-          <div className="flex flex-row">
-            <div className="grow">
+          <div className="grid grid-cols-2 items-start">
+            <div>
               <Image
                 className="mb-2"
                 src="/discord-logo-white.svg"
@@ -75,7 +78,9 @@ export default function Game() {
                 height="40"
               />
             </div>
-            <div className="grow items-center">Score: {score}</div>
+            <div className="justify-self-end rounded-md bg-sky-500/50 p-2 font-mono">
+              Score: {score}
+            </div>
           </div>
           <GameLevel
             levelData={GameData[level]}

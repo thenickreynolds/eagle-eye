@@ -4,13 +4,6 @@ import Image from "next/image";
 export default function Splash({ onStart }: { onStart: () => void }) {
   return (
     <>
-      <Image
-        className="mb-2"
-        src="/discord-logo-white.svg"
-        alt="Discord Logo"
-        width="208"
-        height="40"
-      />
       <h1 className="mb-4">
         Eagle Eye <br />
         Challenge

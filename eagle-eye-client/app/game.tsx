@@ -5,6 +5,8 @@ import Splash from "./splash";
 import GameLevel from "./gameLevel";
 import Image from "next/image";
 import AppButton from "./appButton";
+import Score from "./score";
+import Header from "./header";
 
 export enum AnswerOption {
   Left,
@@ -23,10 +25,50 @@ export interface LevelData {
 const GameData: LevelData[] = [
   {
     title: "Which is the correct Discord logo?",
-    levelText: "Easy",
-    leftImage: "/discord-logo-white.svg",
-    rightImage: "/discord-logo-white.svg",
-    correctAnswer: AnswerOption.Left,
+    levelText: "Intro 1",
+    leftImage: "/levels/1/left.png",
+    rightImage: "/levels/1/right.png",
+    correctAnswer: AnswerOption.Right,
+    reason: "Oval eyes, modified text in wordmark",
+  },
+  {
+    title: "Which is the correct Discord logo?",
+    levelText: "Intro 2",
+    leftImage: "/levels/1/left.png",
+    rightImage: "/levels/1/right.png",
+    correctAnswer: AnswerOption.Right,
+    reason: "Oval eyes, modified text in wordmark",
+  },
+  {
+    title: "Which is the correct Discord logo?",
+    levelText: "Intro 3",
+    leftImage: "/levels/1/left.png",
+    rightImage: "/levels/1/right.png",
+    correctAnswer: AnswerOption.Right,
+    reason: "Oval eyes, modified text in wordmark",
+  },
+  {
+    title: "Which is the correct Discord logo?",
+    levelText: "Intro 4",
+    leftImage: "/levels/1/left.png",
+    rightImage: "/levels/1/right.png",
+    correctAnswer: AnswerOption.Right,
+    reason: "Oval eyes, modified text in wordmark",
+  },
+  {
+    title: "Which is the correct Discord logo?",
+    levelText: "Intro 5",
+    leftImage: "/levels/1/left.png",
+    rightImage: "/levels/1/right.png",
+    correctAnswer: AnswerOption.Right,
+    reason: "Oval eyes, modified text in wordmark",
+  },
+  {
+    title: "Which is the correct Discord logo?",
+    levelText: "Intro 6",
+    leftImage: "/levels/1/left.png",
+    rightImage: "/levels/1/right.png",
+    correctAnswer: AnswerOption.Right,
     reason: "Oval eyes, modified text in wordmark",
   },
 ];
@@ -61,41 +103,29 @@ export default function Game() {
   return (
     // TODO fix text colors
     // TODO add background images
-    // TOOD add app frame
-    <div className="m-12 flex flex-col max-w-2xl text-white">
-      {gameState === GameState.Splash && (
-        <Splash onStart={() => setGameState(GameState.Playing)} />
-      )}
-      {gameState === GameState.Playing && (
-        <>
-          <div className="grid grid-cols-2 items-start">
-            <div>
-              <Image
-                className="mb-2"
-                src="/discord-logo-white.svg"
-                alt="Discord Logo"
-                width="208"
-                height="40"
-              />
-            </div>
-            <div className="justify-self-end rounded-md bg-sky-500/50 p-2 font-mono">
-              Score: {score}
-            </div>
-          </div>
+    <div className="pl-12 pr-12 pb-12 pt-96 flex flex-col max-w-4xl text-white">
+      <Header showScore={gameState === GameState.Playing} score={score} />
+      {/* TODO subheader? */}
+      <div className="pt-8">
+        {gameState === GameState.Splash && (
+          <Splash onStart={() => setGameState(GameState.Playing)} />
+        )}
+        {gameState === GameState.Playing && (
           <GameLevel
+            key={level}
             levelData={GameData[level]}
             onAnswer={onAnswer}
             onNext={nextLevel}
           />
-        </>
-      )}
-      {gameState === GameState.End && (
-        <div>
-          <h1>Game Over</h1>
-          <div>Score: {score}</div>
-          <AppButton text="Play Again" onClick={() => reset()} />
-        </div>
-      )}
+        )}
+        {gameState === GameState.End && (
+          <div>
+            <h1>Game Over</h1>
+            <div>Score: {score}</div>
+            <AppButton text="Play Again" onClick={() => reset()} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

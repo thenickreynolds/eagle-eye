@@ -8,7 +8,7 @@ export default function AppButton({
   onClick: () => void;
 }) {
   return (
-    <div className="button" onClick={() => onClick()}>
+    <div className="button w-fit" onClick={() => onClick()}>
       {text}
     </div>
   );

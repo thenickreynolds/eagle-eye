@@ -106,7 +106,6 @@ export default function Game() {
   return (
     <>
       {/* TODO List
-
           P0
           - improve transitions
           - bring in all other questions
@@ -129,7 +128,7 @@ export default function Game() {
             <div className="grid grid-cols-2 items-start m-12">
               {/* TODO replace with eagle eye logo */}
               <Image
-                className="mb-2 mt-1"
+                className="mb-2 mt-2"
                 src="/discord-logo-white.svg"
                 alt="Discord Logo"
                 width="208"

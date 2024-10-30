@@ -22,6 +22,10 @@ function Option({
   onClick?: () => void;
   optionState: OptionState;
 }) {
+  const text = optionState === OptionState.Correct ? "Correct!" : "Incorrect";
+  const image =
+    optionState === OptionState.Correct ? "/check.png" : "/cross.png";
+
   return (
     <div className="relative inline-block px-2">
       <div
@@ -32,7 +36,7 @@ function Option({
       >
         <Image
           className={classNames(
-            "w-full pointer-events-none shadow-lg rounded-xl border-4",
+            "w-full pointer-events-none shadow-lg rounded-xl border-4 bg-white",
             {
               "border-green-500": optionState === OptionState.Correct,
               "border-red-500": optionState === OptionState.Incorrect,
@@ -48,13 +52,14 @@ function Option({
 
       <span
         className={classNames(
-          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-black px-4 py-1 rounded-full font-bold shadow-md min-w-32 text-center",
+          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-black p-1.5 rounded-full font-bold shadow-md text-center flex flex-row items-center justify-center",
           {
             collapse: optionState === OptionState.None,
           }
         )}
       >
-        {optionState === OptionState.Correct ? "✅ Correct" : "❌ Incorrect"}
+        <Image src={image} alt={text} width={24} height={24} />
+        <span className="ml-2 mr-1">{text}</span>
       </span>
     </div>
   );
@@ -121,14 +126,14 @@ export default function GameLevel({
   );
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center">
       <div
-        className="font-semibold leading-tight mb-4 text-5xl text-center"
+        className="font-semibold leading-tight text-5xl text-center mb-1"
         style={{ fontFamily: `"Ginto", sans-serif` }}
       >
         {levelData.title}
       </div>
-      <div className="text-center text-3xl text-zinc-300">
+      <div className="text-center text-3xl text-zinc-300 font-semibold mb-10">
         {levelData.levelText}
       </div>
       <div className="grid grid-cols-2 pt-4">

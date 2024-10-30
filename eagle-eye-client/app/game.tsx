@@ -104,8 +104,6 @@ export default function Game() {
 
   return (
     <>
-      {/* TODO PIP mode */}
-      {/* TODO mobile responsiveness */}
       {/* TODO fix theme */}
       {/* TODO mute button */}
       <div className="text-white">

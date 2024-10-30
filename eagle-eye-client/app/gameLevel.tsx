@@ -109,14 +109,11 @@ export default function GameLevel({
   const compare = shiftPressed || compareDown;
 
   const handleAnswer = (selected: AnswerOption) => {
-    console.log(selected);
     setAnswer(selected);
     onAnswer(selected === levelData.correctAnswer);
   };
 
   const hasAnswered = answer !== undefined;
-
-  console.log(hasAnswered);
 
   useEffect(() => {
     const handleKeyPress = (event: { key: string }) => {
@@ -193,12 +190,9 @@ export default function GameLevel({
       </div>
 
       <div
-        className={classNames(
-          "flex flex-col gap-4 self-start w-full collapse",
-          {
-            invisible: !hasAnswered,
-          }
-        )}
+        className={classNames("flex flex-col gap-4 self-start w-full", {
+          invisible: !hasAnswered,
+        })}
       >
         <p className="font-mono text-center p-6 leading-loose">
           Press and hold{" "}

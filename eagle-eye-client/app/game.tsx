@@ -24,50 +24,42 @@ const GameData: LevelData[] = [
   {
     title: "Which is the correct Discord logo?",
     levelText: "Intro 1",
-    leftImage: "/levels/1/left.png",
-    rightImage: "/levels/1/right.png",
+    leftImage: "/levels/1_Left.png",
+    rightImage: "/levels/1_Right.png",
     correctAnswer: AnswerOption.Right,
     reason: "Oval eyes, modified text in wordmark",
   },
   {
-    title: "Which is the correct Discord logo?",
+    title: "Which blurple is our brand #5865F2?",
     levelText: "Intro 2",
-    leftImage: "/levels/1/left.png",
-    rightImage: "/levels/1/right.png",
+    leftImage: "/levels/2_Left.png",
+    rightImage: "/levels/2_Right.png",
     correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark",
+    reason: "Oval eyes, modified text in wordmark", // TODO replace
   },
   {
-    title: "Which is the correct Discord logo?",
+    title: "Which Wumpus is cozier?",
     levelText: "Intro 3",
-    leftImage: "/levels/1/left.png",
-    rightImage: "/levels/1/right.png",
-    correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark",
+    leftImage: "/levels/3_Left.png",
+    rightImage: "/levels/3_Right.png",
+    correctAnswer: AnswerOption.Left,
+    reason: "Oval eyes, modified text in wordmark", // TODO replace
   },
   {
-    title: "Which is the correct Discord logo?",
+    title: "What is Discord’s design system named?",
     levelText: "Intro 4",
-    leftImage: "/levels/1/left.png",
-    rightImage: "/levels/1/right.png",
-    correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark",
+    leftImage: "/levels/4_Left.png",
+    rightImage: "/levels/4_Right.png",
+    correctAnswer: AnswerOption.Left,
+    reason: "Oval eyes, modified text in wordmark", // TODO replace
   },
   {
-    title: "Which is the correct Discord logo?",
+    title: "Which squircle is centered?",
     levelText: "Intro 5",
-    leftImage: "/levels/1/left.png",
-    rightImage: "/levels/1/right.png",
-    correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark",
-  },
-  {
-    title: "Which is the correct Discord logo?",
-    levelText: "Intro 6",
-    leftImage: "/levels/1/left.png",
-    rightImage: "/levels/1/right.png",
-    correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark",
+    leftImage: "/levels/5_Left.png",
+    rightImage: "/levels/5_Right.png",
+    correctAnswer: AnswerOption.Left,
+    reason: "Oval eyes, modified text in wordmark", // TODO replace
   },
 ];
 
@@ -96,7 +88,7 @@ export default function Game() {
   const [score, setScore] = useState(0);
 
   const onAnswer = (wasCorrect: boolean) => {
-    if (wasCorrect) setScore(score + 100);
+    if (wasCorrect) setScore(score + 10);
   };
   const nextLevel = () => {
     if (level < GameData.length - 1) {

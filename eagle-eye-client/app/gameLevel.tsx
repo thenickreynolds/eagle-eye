@@ -41,8 +41,8 @@ function Option({
           )}
           src={src}
           alt={alt}
-          height={320}
-          width={750}
+          height={500}
+          width={320}
         />
       </div>
 

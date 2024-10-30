@@ -11,7 +11,7 @@ import { Howl } from "howler";
 const backgroundMusic = new Howl({
   src: "discord_app_sounds_vibing_wumpus.mp3",
   loop: true,
-  volume: 0.15,
+  volume: 0.05,
 });
 
 export enum AnswerOption {

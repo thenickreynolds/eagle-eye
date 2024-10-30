@@ -8,7 +8,10 @@ export default function AppButton({
   onClick: () => void;
 }) {
   return (
-    <div className="button w-fit" onClick={() => onClick()}>
+    <div
+      className="text-white font-bold cursor-pointer rounded-full bg-indigo-500 text-lg w-fit px-4 py-2 transition-all select-none hover:shadow-lg hover:bg-indigo-600"
+      onClick={() => onClick()}
+    >
       {text}
     </div>
   );

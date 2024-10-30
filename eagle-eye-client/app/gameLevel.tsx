@@ -1,71 +1,73 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnswerOption, LevelData } from "./game";
 import AppButton from "./appButton";
 import classNames from "classnames";
 
 enum OptionState {
   None,
-  Incorrect,
   Correct,
-}
-
-function getOptionStateText(state: OptionState) {
-  switch (state) {
-    case OptionState.None:
-      return "";
-    case OptionState.Correct:
-      return "✅ Correct";
-    case OptionState.Incorrect:
-      return "❌ Incorrect";
-    default:
-      throw "Unhandled";
-  }
+  Incorrect,
 }
 
 function Option({
   src,
   alt,
   onClick,
-  state,
+  optionState,
 }: {
   src: string;
   alt: string;
   onClick?: () => void;
-  state: OptionState;
+  optionState: OptionState;
 }) {
-  if (state !== OptionState.None) onClick = undefined;
-
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block px-2">
       <div
         onClick={onClick}
         className={classNames("select-none", {
-          "cursor-pointer": state === OptionState.None,
+          "cursor-pointer": onClick !== undefined,
         })}
       >
         <Image
-          className="w-full"
+          className={classNames(
+            "w-full pointer-events-none shadow-lg rounded-xl border-4",
+            {
+              "border-green-500": optionState === OptionState.Correct,
+              "border-red-500": optionState === OptionState.Incorrect,
+              "border-transparent": optionState === OptionState.None,
+            }
+          )}
           src={src}
           alt={alt}
-          width={426}
-          height={1000}
+          height={320}
+          width={750}
         />
       </div>
 
       <span
         className={classNames(
-          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-black px-4 py-1 rounded-full font-bold",
+          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-black px-4 py-1 rounded-full font-bold shadow-md min-w-32 text-center",
           {
-            collapse: state === OptionState.None,
+            collapse: optionState === OptionState.None,
           }
         )}
       >
-        {getOptionStateText(state)}
+        {optionState === OptionState.Correct ? "✅ Correct" : "❌ Incorrect"}
       </span>
     </div>
   );
+}
+
+function getOptionState(
+  target: AnswerOption,
+  correctAnswer: AnswerOption,
+  answer?: AnswerOption
+) {
+  if (answer === undefined || answer !== target) return OptionState.None;
+
+  return answer === correctAnswer ? OptionState.Correct : OptionState.Incorrect;
 }
 
 export default function GameLevel({
@@ -78,6 +80,8 @@ export default function GameLevel({
   onNext: () => void;
 }) {
   const [answer, setAnswer] = useState<AnswerOption | undefined>(undefined);
+  const [shiftPressed, setShiftPressed] = useState(false);
+
   const handleAnswer = (selected: AnswerOption) => {
     console.log(selected);
     setAnswer(selected);
@@ -85,57 +89,80 @@ export default function GameLevel({
   };
 
   const hasAnswered = answer !== undefined;
-  const levelText = hasAnswered ? levelData.reason : "Select the correct image";
 
-  const leftState = hasAnswered
-    ? levelData.correctAnswer === AnswerOption.Left
-      ? OptionState.Correct
-      : OptionState.Incorrect
-    : OptionState.None;
-  const rightState = hasAnswered
-    ? levelData.correctAnswer === AnswerOption.Right
-      ? OptionState.Correct
-      : OptionState.Incorrect
-    : OptionState.None;
+  useEffect(() => {
+    const handleKeyPress = (event: { key: string }) => {
+      if (event.key === "Shift") setShiftPressed(true);
+      if (event.key === "Enter" && hasAnswered) onNext();
+      if (event.key === "1" && !hasAnswered) handleAnswer(AnswerOption.Left);
+      if (event.key === "2" && !hasAnswered) handleAnswer(AnswerOption.Right);
+    };
+    const handleKeyUp = (event: { key: string }) => {
+      if (event.key === "Shift") setShiftPressed(false);
+    };
+    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("keyup", handleKeyUp);
 
-  // TODO slow down the transition
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [hasAnswered]);
+
+  const leftState = getOptionState(
+    AnswerOption.Left,
+    levelData.correctAnswer,
+    answer
+  );
+  const rightState = getOptionState(
+    AnswerOption.Right,
+    levelData.correctAnswer,
+    answer
+  );
+
   return (
     <div className="flex flex-col items-center gap-4">
-      <h1 className="min-h-24">{levelData.title}</h1>
-      <p className="text-xl text-neutral-300">{levelData.levelText}</p>
       <div className="grid grid-cols-2 pt-4">
         <div
-          className={classNames("transition-transform duration-500", {
+          className={classNames("transition-all duration-300", {
             "transform translate-x-1/2": hasAnswered,
             "z-10": answer === AnswerOption.Left,
+            "opacity-0 ": answer === AnswerOption.Left && shiftPressed,
           })}
         >
           <Option
             src={levelData.leftImage}
             alt="Left Image"
             onClick={() => handleAnswer(AnswerOption.Left)}
-            state={leftState}
+            optionState={leftState}
           />
         </div>
         <div
-          className={classNames("transition-transform duration-500", {
+          className={classNames("transition-all duration-300", {
             "transform -translate-x-1/2": hasAnswered,
             "z-10": answer === AnswerOption.Right,
+            "opacity-0": answer === AnswerOption.Right && shiftPressed,
           })}
         >
           <Option
             src={levelData.rightImage}
             alt="Right Image"
             onClick={() => handleAnswer(AnswerOption.Right)}
-            state={rightState}
+            optionState={rightState}
           />
         </div>
       </div>
 
-      <div className={"flex flex-col gap-4 self-start"}>
-        <p>{levelText}</p>
+      <div
+        className={classNames("flex flex-col gap-4 self-start w-full", {
+          invisible: !hasAnswered,
+        })}
+      >
+        <p className="font-mono text-center">
+          Press and hold Shift to compare, Enter to continue
+        </p>
 
-        {hasAnswered && <AppButton text="Next" onClick={onNext} />}
+        <AppButton text="Next" onClick={onNext} />
       </div>
     </div>
   );

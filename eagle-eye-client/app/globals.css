@@ -135,30 +135,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-family: "Ginto", sans-serif;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
-  font-size: 2.1875rem;
-  font-weight: 800;
-  line-height: 120%;
-}
-
-.button {
-  background-color: #5965f2;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  user-select: none;
-}
-
-.button:hover {
-  background-color: #6a74f5;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+.debug {
+  border: thin solid red;
 }

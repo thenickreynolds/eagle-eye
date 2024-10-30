@@ -5,15 +5,15 @@ export default function Score({ score }: { score: number }) {
   const scoreString = score.toString().padStart(5, "0");
 
   return (
-    <div className="justify-self-end rounded-md bg-sky-500/50 py-1.5 pl-2 pr-3 font-mono flex flex-row items-center">
+    <div className="justify-self-end rounded-md bg-indigo-400 py-1 pl-4 pr-5 font-mono flex flex-row items-center">
       <Image
         className="mr-2"
-        src="/191_Discord_Icons_Crown 1.png"
+        src="/191_Discord_Icons_Crown.png"
         alt="Crown"
-        width="32"
-        height="32"
+        width="44"
+        height="44"
       />
-      Score: {scoreString}
+      {scoreString}
     </div>
   );
 }

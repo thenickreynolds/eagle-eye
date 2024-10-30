@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Splash from "./splash";
 import GameLevel from "./gameLevel";
 import AppButton from "./appButton";
-import Header from "./header";
+import Score from "./score";
+import Image from "next/image";
 import { Howl } from "howler";
 
 const backgroundMusic = new Howl({
@@ -30,7 +31,7 @@ export interface LevelData {
 const GameData: LevelData[] = [
   {
     title: "Which is the correct Discord logo?",
-    levelText: "Intro 1",
+    levelText: "Intro: 1/5",
     leftImage: "/levels/1_Left.png",
     rightImage: "/levels/1_Right.png",
     correctAnswer: AnswerOption.Right,
@@ -38,7 +39,7 @@ const GameData: LevelData[] = [
   },
   {
     title: "Which blurple is our brand #5865F2?",
-    levelText: "Intro 2",
+    levelText: "Intro: 2/5",
     leftImage: "/levels/2_Left.png",
     rightImage: "/levels/2_Right.png",
     correctAnswer: AnswerOption.Right,
@@ -46,7 +47,7 @@ const GameData: LevelData[] = [
   },
   {
     title: "Which Wumpus is cozier?",
-    levelText: "Intro 3",
+    levelText: "Intro: 3/5",
     leftImage: "/levels/3_Left.png",
     rightImage: "/levels/3_Right.png",
     correctAnswer: AnswerOption.Left,
@@ -54,7 +55,7 @@ const GameData: LevelData[] = [
   },
   {
     title: "What is Discord’s design system named?",
-    levelText: "Intro 4",
+    levelText: "Intro: 4/5",
     leftImage: "/levels/4_Left.png",
     rightImage: "/levels/4_Right.png",
     correctAnswer: AnswerOption.Left,
@@ -62,7 +63,7 @@ const GameData: LevelData[] = [
   },
   {
     title: "Which squircle is centered?",
-    levelText: "Intro 5",
+    levelText: "Intro: 5/5",
     leftImage: "/levels/5_Left.png",
     rightImage: "/levels/5_Right.png",
     correctAnswer: AnswerOption.Left,
@@ -74,19 +75,6 @@ enum GameState {
   Splash,
   Playing,
   End,
-}
-
-function getHeaderText(gameState: GameState, level: LevelData) {
-  switch (gameState) {
-    case GameState.Splash:
-      return "Eagle Eye Challenge";
-    case GameState.Playing:
-      return level.title;
-    case GameState.End:
-      return "Game Over";
-    default:
-      throw "Unhandled";
-  }
 }
 
 export default function Game() {
@@ -114,39 +102,45 @@ export default function Game() {
     setLevel(0);
   };
 
-  const headerText = getHeaderText(gameState, GameData[level]);
-
   return (
-    // TODO fix text colors
-    // TODO add background images
-    <div className="pl-12 pr-12 pb-12 pt-96 flex flex-col max-w-4xl text-white">
-      <Header showScore={gameState === GameState.Playing} score={score} />
-      {/* TODO correct font usage */}
-      <div
-        className="uppercase font-extrabold leading-tight mb-4 text-5xl min-h-32"
-        style={{ fontFamily: `"Ginto", sans-serif` }}
-      >
-        {headerText}
-      </div>
+    <>
+      {/* TODO fix theme */}
+      <div className="text-white">
+        {gameState === GameState.Splash && (
+          <Splash onStart={() => setGameState(GameState.Playing)} />
+        )}
+        {gameState === GameState.Playing && (
+          <div className="flex flex-col min-h-screen">
+            <div className="grid grid-cols-2 items-start m-12">
+              {/* TODO replace with eagle eye logo */}
+              <Image
+                className="mb-2 mt-1"
+                src="/discord-logo-white.svg"
+                alt="Discord Logo"
+                width="208"
+                height="40"
+              />
 
-      {gameState === GameState.Splash && (
-        <Splash onStart={() => setGameState(GameState.Playing)} />
-      )}
-      {gameState === GameState.Playing && (
-        <GameLevel
-          key={level}
-          levelData={GameData[level]}
-          onAnswer={onAnswer}
-          onNext={nextLevel}
-        />
-      )}
-      {gameState === GameState.End && (
-        <div>
-          <h1>Game Over</h1>
-          <div>Score: {score}</div>
-          <AppButton text="Play Again" onClick={() => reset()} />
-        </div>
-      )}
-    </div>
+              <Score score={score} />
+            </div>
+            <div className="grow flex-col content-center px-12">
+              <GameLevel
+                key={level}
+                levelData={GameData[level]}
+                onAnswer={onAnswer}
+                onNext={nextLevel}
+              />
+            </div>
+          </div>
+        )}
+        {gameState === GameState.End && (
+          <div>
+            <h1>Game Over</h1>
+            <div>Score: {score}</div>
+            <AppButton text="Play Again" onClick={() => reset()} />
+          </div>
+        )}
+      </div>
+    </>
   );
 }

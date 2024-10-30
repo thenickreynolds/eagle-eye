@@ -41,8 +41,8 @@ function Option({
           )}
           src={src}
           alt={alt}
-          height={500}
-          width={320}
+          height={1000}
+          width={640}
         />
       </div>
 
@@ -122,6 +122,15 @@ export default function GameLevel({
 
   return (
     <div className="flex flex-col items-center gap-4">
+      <div
+        className="font-semibold leading-tight mb-4 text-5xl text-center"
+        style={{ fontFamily: `"Ginto", sans-serif` }}
+      >
+        {levelData.title}
+      </div>
+      <div className="text-center text-3xl text-zinc-300">
+        {levelData.levelText}
+      </div>
       <div className="grid grid-cols-2 pt-4">
         <div
           className={classNames("transition-all duration-300", {

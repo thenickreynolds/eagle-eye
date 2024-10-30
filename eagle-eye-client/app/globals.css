@@ -114,6 +114,76 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-400-normalitalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-500-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-500-mediumitalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-600-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-600-semibolditalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-700-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-700-bolditalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-800-extrabold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ggsans";
+  src: url("/fonts/ggsans-800-extrabolditalic.woff2") format("woff2");
+  font-weight: 800;
+  font-style: italic;
+}
+
 :root {
   --background: linear-gradient(to bottom, #3442d9, #232145);
   --foreground: #171717;
@@ -129,7 +199,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "ggsans", Arial, Helvetica, sans-serif;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;

@@ -116,6 +116,8 @@ export default function GameLevel({
 
   const hasAnswered = answer !== undefined;
 
+  console.log(hasAnswered);
+
   useEffect(() => {
     const handleKeyPress = (event: { key: string }) => {
       if (event.key === "Shift") setShiftPressed(true);
@@ -191,11 +193,14 @@ export default function GameLevel({
       </div>
 
       <div
-        className={classNames("flex flex-col gap-4 self-start w-full", {
-          invisible: !hasAnswered,
-        })}
+        className={classNames(
+          "flex flex-col gap-4 self-start w-full collapse",
+          {
+            invisible: !hasAnswered,
+          }
+        )}
       >
-        <p className="font-mono text-center p-6 leading-loose collapse md:visible">
+        <p className="font-mono text-center p-6 leading-loose">
           Press and hold{" "}
           <span
             className={classNames("font-bold bg-slate-400/50 p-2 rounded-md", {

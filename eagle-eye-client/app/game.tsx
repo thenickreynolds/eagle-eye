@@ -1,10 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Splash from "./splash";
 import GameLevel from "./gameLevel";
 import AppButton from "./appButton";
 import Header from "./header";
+import { Howl } from "howler";
+
+const backgroundMusic = new Howl({
+  src: "discord_app_sounds_vibing_wumpus.mp3",
+  loop: true,
+  volume: 0.5,
+});
 
 export enum AnswerOption {
   Left,
@@ -86,6 +93,10 @@ export default function Game() {
   const [gameState, setGameState] = useState(GameState.Splash);
   const [level, setLevel] = useState(0);
   const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    backgroundMusic.play();
+  }, []);
 
   const onAnswer = (wasCorrect: boolean) => {
     if (wasCorrect) setScore(score + 10);

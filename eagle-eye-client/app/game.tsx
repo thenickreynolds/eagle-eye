@@ -144,6 +144,10 @@ export default function Game() {
           </div>
         )}
       </div>
+      {/* PIP mode */}
+      <div className="min-[200px]:collapse absolute inset-0 w-full min-h-screen flex items-center justify-center bg-indigo-300">
+        <Score score={score} />
+      </div>
     </>
   );
 }

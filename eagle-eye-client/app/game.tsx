@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Splash from "./splash";
 import GameLevel from "./gameLevel";
-import AppButton from "./appButton";
+import AppPrimaryButton from "./appPrimaryButton";
 import Score from "./score";
 import Image from "next/image";
 import { Howl } from "howler";
@@ -137,7 +137,7 @@ export default function Game() {
           <div>
             <h1>Game Over</h1>
             <div>Score: {score}</div>
-            <AppButton text="Play Again" onClick={() => reset()} />
+            <AppPrimaryButton text="Play Again" onClick={() => reset()} />
           </div>
         )}
       </div>

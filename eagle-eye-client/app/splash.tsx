@@ -1,4 +1,4 @@
-import AppButton from "./appButton";
+import AppPrimaryButton from "./appPrimaryButton";
 import Image from "next/image";
 
 export default function Splash({ onStart }: { onStart: () => void }) {
@@ -46,7 +46,7 @@ export default function Splash({ onStart }: { onStart: () => void }) {
           design sense really is!
         </p>
         <div>
-          <AppButton text="Begin" onClick={onStart} />
+          <AppPrimaryButton text="Begin" onClick={onStart} />
         </div>
       </div>
     </>

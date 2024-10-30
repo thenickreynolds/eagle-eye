@@ -2,8 +2,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnswerOption, LevelData } from "./game";
-import AppButton from "./appButton";
 import classNames from "classnames";
+import AppButton from "./appButton";
 
 enum OptionState {
   None,
@@ -36,7 +36,7 @@ function Option({
       >
         <Image
           className={classNames(
-            "w-full pointer-events-none shadow-lg rounded-xl border-4 bg-white",
+            "w-full pointer-events-none shadow-lg rounded-2xl border-4 bg-white",
             {
               "border-green-500": optionState === OptionState.Correct,
               "border-red-500": optionState === OptionState.Incorrect,
@@ -86,6 +86,9 @@ export default function GameLevel({
 }) {
   const [answer, setAnswer] = useState<AnswerOption | undefined>(undefined);
   const [shiftPressed, setShiftPressed] = useState(false);
+  const [compareDown, setCompareDown] = useState(false);
+
+  const compare = shiftPressed || compareDown;
 
   const handleAnswer = (selected: AnswerOption) => {
     console.log(selected);
@@ -141,7 +144,7 @@ export default function GameLevel({
           className={classNames("transition-all duration-300", {
             "transform translate-x-1/2": hasAnswered,
             "z-10": answer === AnswerOption.Left,
-            "opacity-0 ": answer === AnswerOption.Left && shiftPressed,
+            "opacity-0 ": answer === AnswerOption.Left && compare,
           })}
         >
           <Option
@@ -155,7 +158,7 @@ export default function GameLevel({
           className={classNames("transition-all duration-300", {
             "transform -translate-x-1/2": hasAnswered,
             "z-10": answer === AnswerOption.Right,
-            "opacity-0": answer === AnswerOption.Right && shiftPressed,
+            "opacity-0": answer === AnswerOption.Right && compare,
           })}
         >
           <Option
@@ -172,11 +175,31 @@ export default function GameLevel({
           invisible: !hasAnswered,
         })}
       >
-        <p className="font-mono text-center">
-          Press and hold Shift to compare, Enter to continue
+        <p className="font-mono text-center p-6">
+          Press and hold{" "}
+          <span
+            className={classNames("font-bold bg-slate-400/50 p-2 rounded-md", {
+              "text-black": compare,
+              "bg-slate-400": compare,
+            })}
+          >
+            Shift
+          </span>{" "}
+          to compare,{" "}
+          <span className="font-bold bg-slate-400/50 p-2 rounded-md">
+            Enter
+          </span>{" "}
+          to continue
         </p>
 
-        <AppButton text="Next" onClick={onNext} />
+        <div className="w-full flex justify-center gap-4">
+          <AppButton
+            text="Compare"
+            onMouseDown={() => setCompareDown(true)}
+            onMouseUp={() => setCompareDown(false)}
+          />
+          <AppButton text="Next" onClick={onNext} />
+        </div>
       </div>
     </div>
   );

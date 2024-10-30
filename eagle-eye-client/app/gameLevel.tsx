@@ -199,7 +199,7 @@ export default function GameLevel({
           <span
             className={classNames("font-bold bg-slate-400/50 p-2 rounded-md", {
               "text-black": compare,
-              "bg-slate-200": compare,
+              "bg-slate-200/100": compare,
             })}
           >
             Shift

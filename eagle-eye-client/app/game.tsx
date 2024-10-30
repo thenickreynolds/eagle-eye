@@ -105,12 +105,21 @@ export default function Game() {
 
   return (
     <>
-      {/* TODO improve transitions */}
-      {/* TODO consider progress bar */}
-      {/* TODO bring in all other questions */}
-      {/* TODO leaderboard */}
-      {/* TODO fix theme */}
-      {/* TODO add sound effects for submit, correct and incorrect */}
+      {/* TODO List
+
+          P0
+          - improve transitions
+          - bring in all other questions
+
+          P1
+          - post result to chat when game over
+          - leaderboard
+
+          P2
+          - fix the way I force dark theme colors :(
+          - consider progress bar
+          - consider sound effects for correct and incorrect
+       */}
       <div className="text-white">
         {gameState === GameState.Splash && (
           <Splash onStart={() => setGameState(GameState.Playing)} />

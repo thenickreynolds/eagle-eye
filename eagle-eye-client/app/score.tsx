@@ -1,8 +1,39 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Score({ score }: { score: number }) {
-  // TODO make this score count up
-  const scoreString = score.toString().padStart(5, "0");
+  const [displayScore, setDisplayScore] = useState(score);
+
+  const getStepSize = (current: number, target: number) => {
+    const remaining = Math.abs(target - current);
+    // Exponentially increase step size as we get closer
+    return Math.max(1, Math.floor(remaining * 0.2));
+  };
+
+  useEffect(() => {
+    if (displayScore === score) return;
+
+    const direction = displayScore < score ? 1 : -1;
+    const timer = setInterval(() => {
+      setDisplayScore((prev) => {
+        if (prev === score) {
+          clearInterval(timer);
+          return prev;
+        }
+        const step = getStepSize(prev, score);
+        // Don't overshoot the target
+        if (direction > 0) {
+          return Math.min(score, prev + step);
+        } else {
+          return Math.max(score, prev - step);
+        }
+      });
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, [score, displayScore]);
+
+  const scoreString = displayScore.toString().padStart(6, "0");
 
   return (
     <div className="justify-self-end rounded-md bg-indigo-400 py-1 pl-4 pr-5 font-mono flex flex-row items-center">

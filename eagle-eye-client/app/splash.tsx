@@ -21,7 +21,7 @@ export default function Splash({ onStart }: { onStart: () => void }) {
         />
       </div>
 
-      <div className="flex flex-col justify-center h-screen max-w-3xl my-auto pl-32">
+      <div className="flex flex-col justify-center h-screen max-w-3xl my-auto pl-6 md:pl-32">
         <Image
           className="mb-2 mt-1"
           src="/discord-logo-white.svg"
@@ -31,20 +31,22 @@ export default function Splash({ onStart }: { onStart: () => void }) {
         />
 
         <div
-          className="uppercase font-extrabold leading-tight mb-4 text-5xl"
+          className="uppercase font-extrabold leading-tight mb-4 text-2xl md:text-5xl"
           style={{ fontFamily: `"Ginto", sans-serif` }}
         >
           Eagle Eye
           <br /> Challenge
         </div>
-        <p className="text-6xl mb-8">How good is your eye for design detail?</p>
+        <p className="text-2xl md:text-4xl mb-8">
+          How good is your eye for design detail?
+        </p>
         <p className="mb-4 leading-relaxed text-lg">
           Test your eye for detail and see how well you truly know the Discord
           product. Spot differences, recognize subtle design elements, and prove
           you&apos;re a master of your craft! Let&apos;s see how sharp your
           design sense really is!
         </p>
-        <div>
+        <div className="pt-4">
           <AppPrimaryButton text="Begin" onClick={onStart} />
         </div>
       </div>

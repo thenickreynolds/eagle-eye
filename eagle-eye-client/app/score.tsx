@@ -36,7 +36,7 @@ export default function Score({ score }: { score: number }) {
   const scoreString = displayScore.toString().padStart(6, "0");
 
   return (
-    <div className="justify-self-end rounded-md bg-indigo-400 py-1 pl-4 pr-5 font-mono flex flex-row items-center">
+    <div className="justify-self-end rounded-md bg-indigo-400 py-0.5 md:py-1 pl-2 md:pl-4 pr-2 md:pr-5 font-mono flex flex-row items-center text-sm md:text-base">
       <Image
         className="mr-2"
         src="/191_Discord_Icons_Crown.png"

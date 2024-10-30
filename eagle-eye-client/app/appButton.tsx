@@ -17,6 +17,8 @@ export default function AppButton({
       onClick={() => onClick?.()}
       onMouseDown={() => onMouseDown?.()}
       onMouseUp={() => onMouseUp?.()}
+      onTouchStart={() => onMouseDown?.()}
+      onTouchEnd={() => onMouseUp?.()}
     >
       {text}
     </div>

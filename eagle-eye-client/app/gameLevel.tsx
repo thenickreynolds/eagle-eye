@@ -38,11 +38,12 @@ function Option({
       >
         <Image
           className={classNames(
-            "w-full pointer-events-none shadow-lg rounded-2xl border-4 bg-white",
+            "w-full pointer-events-none rounded-2xl border-4 bg-white",
             {
               "border-green-500": optionState === OptionState.Correct,
               "border-red-500": optionState === OptionState.Incorrect,
               "border-transparent": optionState === OptionState.None,
+              "hover:shadow-2xl": onClick !== undefined,
             }
           )}
           src={src}
@@ -148,12 +149,12 @@ export default function GameLevel({
   return (
     <div className="flex flex-col items-center">
       <div
-        className="font-semibold leading-tight text-5xl text-center mb-1"
+        className="font-semibold leading-tight text-2xl md:text-5xl text-center mb-1"
         style={{ fontFamily: `"Ginto", sans-serif` }}
       >
         {levelData.title}
       </div>
-      <div className="text-center text-3xl text-zinc-300 font-semibold mb-10">
+      <div className="text-center text-lg md:text-3xl text-zinc-300 font-semibold mb-10">
         {levelData.levelText}
       </div>
       <div className="grid grid-cols-2 pt-4 pb-12">
@@ -194,7 +195,7 @@ export default function GameLevel({
           invisible: !hasAnswered,
         })}
       >
-        <p className="font-mono text-center p-6">
+        <p className="font-mono text-center p-6 leading-loose collapse md:visible">
           Press and hold{" "}
           <span
             className={classNames("font-bold bg-slate-400/50 p-2 rounded-md", {

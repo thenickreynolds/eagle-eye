@@ -16,18 +16,20 @@ function Option({
   alt,
   onClick,
   optionState,
+  explanation,
 }: {
   src: string;
   alt: string;
   onClick?: () => void;
   optionState: OptionState;
+  explanation?: string;
 }) {
   const text = optionState === OptionState.Correct ? "Correct!" : "Incorrect";
   const image =
     optionState === OptionState.Correct ? "/check.png" : "/cross.png";
 
   return (
-    <div className="relative inline-block px-2">
+    <div className="relative inline-block mx-2">
       <div
         onClick={onClick}
         className={classNames("select-none", {
@@ -52,14 +54,29 @@ function Option({
 
       <span
         className={classNames(
-          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-black p-1.5 rounded-full font-bold shadow-md text-center flex flex-row items-center justify-center",
+          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
           {
             collapse: optionState === OptionState.None,
           }
         )}
       >
-        <Image src={image} alt={text} width={24} height={24} />
-        <span className="ml-2 mr-1">{text}</span>
+        <div className="bg-white text-black p-1.5 rounded-full font-bold shadow-md flex flex-row items-center justify-center">
+          <Image src={image} alt={text} width={24} height={24} />
+          <span className="ml-2 mr-1">{text}</span>
+        </div>
+      </span>
+
+      <span
+        className={classNames(
+          "absolute bottom-0 w-full transform translate-y-1/2 flex flex-row items-center justify-center",
+          {
+            collapse: optionState === OptionState.None,
+          }
+        )}
+      >
+        <span className="bg-slate-100 border-slate-200 border text-black py-1.5 px-2 rounded-lg font-bold shadow-md">
+          {explanation}
+        </span>
       </span>
     </div>
   );
@@ -139,7 +156,7 @@ export default function GameLevel({
       <div className="text-center text-3xl text-zinc-300 font-semibold mb-10">
         {levelData.levelText}
       </div>
-      <div className="grid grid-cols-2 pt-4">
+      <div className="grid grid-cols-2 pt-4 pb-12">
         <div
           className={classNames("transition-all duration-300", {
             "transform translate-x-1/2": hasAnswered,
@@ -152,6 +169,7 @@ export default function GameLevel({
             alt="Left Image"
             onClick={() => handleAnswer(AnswerOption.Left)}
             optionState={leftState}
+            explanation={levelData.reason}
           />
         </div>
         <div
@@ -166,6 +184,7 @@ export default function GameLevel({
             alt="Right Image"
             onClick={() => handleAnswer(AnswerOption.Right)}
             optionState={rightState}
+            explanation={levelData.reason}
           />
         </div>
       </div>
@@ -180,7 +199,7 @@ export default function GameLevel({
           <span
             className={classNames("font-bold bg-slate-400/50 p-2 rounded-md", {
               "text-black": compare,
-              "bg-slate-400": compare,
+              "bg-slate-200": compare,
             })}
           >
             Shift

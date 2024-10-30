@@ -12,7 +12,6 @@ export default function Splash({ onStart }: { onStart: () => void }) {
           width="1440"
           height="90"
         />
-        {/* TODO fix for mobile */}
         <Image
           src="/background-sprites.png"
           alt="Background"

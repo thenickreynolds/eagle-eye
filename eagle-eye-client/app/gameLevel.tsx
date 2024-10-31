@@ -78,7 +78,7 @@ function Option({
 
       <span
         className={classNames(
-          "absolute bottom-0 w-full transform translate-y-1/2 flex flex-row items-center justify-center transition-opacity delay-200 duration-300",
+          "absolute bottom-0 w-full transform translate-y-1/2 flex flex-row items-center justify-center transition-opacity delay-300",
           {
             "opacity-0": optionState === OptionState.None,
             "opacity-100": optionState !== OptionState.None,
@@ -205,10 +205,12 @@ export default function GameLevel({
           invisible: !hasAnswered,
         })}
       >
-        <p className="font-mono text-center leading-loose text-sm">
+        <p
+          className={classNames("font-mono text-center leading-loose text-sm", {
+            invisible: !hasAnswered,
+          })}
+        >
           Press and hold{" "}
-          {/* TODO the background toggling doesn't work sometimes */}
-          {/* TODO don't show this on mobile */}
           <span
             className={classNames("font-bold p-2 rounded-md", {
               "bg-slate-400/50": !compare,

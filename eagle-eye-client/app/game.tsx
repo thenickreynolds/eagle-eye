@@ -64,7 +64,6 @@ export default function Game() {
           P0
           - improve transitions
           - "incorrect" flashes quickly on first question?
-          - reexport correct/incorrect at higher res
           - confetti on game over
 
           
@@ -88,9 +87,8 @@ export default function Game() {
         )}
         {gameState === GameState.Playing && (
           <div className="flex flex-col min-h-screen">
-            <div className="grid grid-cols-2 items-start m-12">
+            <div className="grid grid-cols-2 m-12 items-center mr-28">
               <Image
-                className="mb-2 mt-1"
                 src="/discord-logo-eagle-eye.svg"
                 alt="Discord Logo"
                 width="122"
@@ -124,13 +122,13 @@ export default function Game() {
           </div>
         )}
       </div>
-      <div className="absolute left-0 bottom-0 p-10">
+      <div className="absolute right-0 top-0 p-14 m-0.5">
         <Image
           className="cursor-pointer opacity-75 hover:opacity-100 transition-opacity duration-300 shadow-lg"
           alt={isMuted ? "Unmute" : "Mute"}
-          src={isMuted ? "/volume_off.svg" : "/volume.svg"}
-          width="40"
-          height="40"
+          src={isMuted ? "/headphones-slash.svg" : "/headphones.svg"}
+          width="30"
+          height="30"
           onClick={() => {
             const newIsMuted = !isMuted;
             setIsMuted(newIsMuted);

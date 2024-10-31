@@ -8,6 +8,7 @@ import Score from "./score";
 import Image from "next/image";
 import { Howl } from "howler";
 import GameData from "./gameData";
+import { fireworks } from "@/utils/confettiHelper";
 
 const backgroundMusic = new Howl({
   src: "discord_app_sounds_vibing_wumpus.mp3",
@@ -40,7 +41,11 @@ export default function Game() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {}, [gameState]);
+  useEffect(() => {
+    if (gameState === GameState.End) {
+      fireworks();
+    }
+  }, [gameState]);
 
   const onAnswer = (wasCorrect: boolean) => {
     if (wasCorrect) setScore(score + GameData[level].points);

@@ -92,15 +92,16 @@ export default function Game() {
           </div>
         )}
         {gameState === GameState.End && (
-          <div className="flex flex-col items-center justify-center h-screen gap-4">
+          <div className="flex flex-col items-center justify-center h-screen gap-6">
             <div
               className="uppercase font-extrabold leading-tight mb-4 text-2xl md:text-5xl"
               style={{ fontFamily: `"Ginto", sans-serif` }}
             >
               Game Over
             </div>
-            <div className="text-2xl md:text-4xl">You scored:</div>
+            <div className="text-2xl md:text-4xl">Congratulations!</div>
             <Score score={score} />
+            <div className="pt-2" />
             <AppPrimaryButton text="Play Again" onClick={() => reset()} />
           </div>
         )}

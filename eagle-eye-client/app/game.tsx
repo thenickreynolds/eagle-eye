@@ -29,7 +29,18 @@ export default function Game() {
 
   useEffect(() => {
     backgroundMusic.play();
+
+    // Hide overlfow in PIP state
+    const handleResize = () => {
+      document.body.style.overflow =
+        window.innerWidth < 350 ? "hidden" : "auto";
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {}, [gameState]);
 
   const onAnswer = (wasCorrect: boolean) => {
     if (wasCorrect) setScore(score + GameData[level].points);
@@ -52,8 +63,7 @@ export default function Game() {
       {/* TODO List
           P0
           - improve transitions
-          - bring in all other questions
-
+          
           P1
           - post result to chat when game over
           - leaderboard

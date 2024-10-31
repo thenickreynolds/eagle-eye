@@ -68,7 +68,6 @@ export default function Game() {
       {/* TODO List
           P0
           - improve transitions
-          - confetti on game over
 
           P1
           - post result to chat when game over

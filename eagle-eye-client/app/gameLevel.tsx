@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AnswerOption, LevelData } from "./game";
 import classNames from "classnames";
 import AppButton from "./appButton";
+import { AnswerOption, LevelData } from "./gameData";
 
 enum OptionState {
   None,
@@ -38,7 +38,7 @@ function Option({
       >
         <Image
           className={classNames(
-            "w-full pointer-events-none rounded-2xl border-4 bg-white",
+            "w-full max-w-md pointer-events-none rounded-2xl border-4 bg-white",
             {
               "border-green-500": optionState === OptionState.Correct,
               "border-red-500": optionState === OptionState.Incorrect,

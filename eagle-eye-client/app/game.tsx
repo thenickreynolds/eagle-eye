@@ -7,69 +7,13 @@ import AppPrimaryButton from "./appPrimaryButton";
 import Score from "./score";
 import Image from "next/image";
 import { Howl } from "howler";
+import GameData from "./gameData";
 
 const backgroundMusic = new Howl({
   src: "discord_app_sounds_vibing_wumpus.mp3",
   loop: true,
   volume: 0.05,
 });
-
-export enum AnswerOption {
-  Left,
-  Right,
-}
-
-export interface LevelData {
-  title: string;
-  levelText: string;
-  leftImage: string;
-  rightImage: string;
-  correctAnswer: AnswerOption;
-  reason: string;
-}
-
-const GameData: LevelData[] = [
-  {
-    title: "Which is the correct Discord logo?",
-    levelText: "Intro: 1 / 5",
-    leftImage: "/levels/1_Left.png",
-    rightImage: "/levels/1_Right.png",
-    correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark",
-  },
-  {
-    title: "Which blurple is our brand #5865F2?",
-    levelText: "Intro: 2 / 5",
-    leftImage: "/levels/2_Left.png",
-    rightImage: "/levels/2_Right.png",
-    correctAnswer: AnswerOption.Right,
-    reason: "Oval eyes, modified text in wordmark", // TODO replace
-  },
-  {
-    title: "Which Wumpus is cozier?",
-    levelText: "Intro: 3 / 5",
-    leftImage: "/levels/3_Left.png",
-    rightImage: "/levels/3_Right.png",
-    correctAnswer: AnswerOption.Left,
-    reason: "Oval eyes, modified text in wordmark", // TODO replace
-  },
-  {
-    title: "What is Discord’s design system named?",
-    levelText: "Intro: 4 / 5",
-    leftImage: "/levels/4_Left.png",
-    rightImage: "/levels/4_Right.png",
-    correctAnswer: AnswerOption.Left,
-    reason: "Oval eyes, modified text in wordmark", // TODO replace
-  },
-  {
-    title: "Which squircle is centered?",
-    levelText: "Intro: 5 / 5",
-    leftImage: "/levels/5_Left.png",
-    rightImage: "/levels/5_Right.png",
-    correctAnswer: AnswerOption.Left,
-    reason: "Oval eyes, modified text in wordmark", // TODO replace
-  },
-];
 
 enum GameState {
   Splash,
@@ -88,7 +32,7 @@ export default function Game() {
   }, []);
 
   const onAnswer = (wasCorrect: boolean) => {
-    if (wasCorrect) setScore(score + 10);
+    if (wasCorrect) setScore(score + GameData[level].points);
   };
   const nextLevel = () => {
     if (level < GameData.length - 1) {

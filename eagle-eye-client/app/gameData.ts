@@ -66,7 +66,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_1_Right.png`,
     correctAnswer: AnswerOption.Left,
     reason: `Incorrect font and text color`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -75,7 +75,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_2_Right.png`,
     correctAnswer: AnswerOption.Right,
     reason: `Rounded corners on message input`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -84,7 +84,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_3_Right.png`,
     correctAnswer: AnswerOption.Right,
     reason: `Incorrect padding, content sitting on bottom of container`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -93,7 +93,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_4_Right.png`,
     correctAnswer: AnswerOption.Left,
     reason: `Inaccessible text color`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -102,7 +102,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_5_Right.png`,
     correctAnswer: AnswerOption.Left,
     reason: `Inconsistent padding in container`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -111,7 +111,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_6_Right.png`,
     correctAnswer: AnswerOption.Right,
     reason: `Actions spacing`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -120,7 +120,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_7_Right.png`,
     correctAnswer: AnswerOption.Right,
     reason: `Font weight`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -129,7 +129,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_8_Right.png`,
     correctAnswer: AnswerOption.Left,
     reason: `Font weight`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -138,7 +138,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_9_Right.png`,
     correctAnswer: AnswerOption.Left,
     reason: `Button padding on edge of container `,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,
@@ -147,7 +147,7 @@ const GameData: LevelData[] = [
     rightImage: `/levels/Easy_10_Right.png`,
     correctAnswer: AnswerOption.Right,
     reason: `Icon alignment, rotation`,
-    points: 20,
+    points: 25,
   },
   {
     title: `Which is correct?`,

@@ -9,6 +9,7 @@ enum OptionState {
   None,
   Correct,
   Incorrect,
+  NotSelected,
 }
 
 function Option({
@@ -38,14 +39,17 @@ function Option({
       >
         <Image
           className={classNames(
-            "w-full max-w-md pointer-events-none rounded-2xl border-4 bg-white",
+            "w-full max-w-md pointer-events-none rounded-2xl bg-white",
             {
-              "border-green-500": optionState === OptionState.Correct,
-              "border-red-500": optionState === OptionState.Incorrect,
+              "border-4": optionState !== OptionState.None,
               "border-transparent": optionState === OptionState.None,
               "hover:shadow-2xl": onClick !== undefined,
             }
           )}
+          style={{
+            borderColor:
+              optionState === OptionState.Correct ? "#2CC771" : "#F8787C",
+          }}
           src={src}
           alt={alt}
           height={1000}
@@ -55,9 +59,14 @@ function Option({
 
       <span
         className={classNames(
-          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+          "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity",
           {
-            collapse: optionState === OptionState.None,
+            "opacity-0":
+              optionState === OptionState.None ||
+              optionState === OptionState.NotSelected,
+            "opacity-100":
+              optionState === OptionState.Correct ||
+              optionState === OptionState.Incorrect,
           }
         )}
       >
@@ -69,13 +78,14 @@ function Option({
 
       <span
         className={classNames(
-          "absolute bottom-0 w-full transform translate-y-1/2 flex flex-row items-center justify-center",
+          "absolute bottom-0 w-full transform translate-y-1/2 flex flex-row items-center justify-center transition-opacity delay-200 duration-300",
           {
-            collapse: optionState === OptionState.None,
+            "opacity-0": optionState === OptionState.None,
+            "opacity-100": optionState !== OptionState.None,
           }
         )}
       >
-        <span className="bg-slate-100 border-slate-200 border text-black py-1.5 px-2 rounded-lg font-bold shadow-md">
+        <span className="bg-slate-100 border-slate-200 border text-black py-1.5 px-2 mx-5 rounded-lg font-bold shadow-md text-center">
           {explanation}
         </span>
       </span>
@@ -88,7 +98,8 @@ function getOptionState(
   correctAnswer: AnswerOption,
   answer?: AnswerOption
 ) {
-  if (answer === undefined || answer !== target) return OptionState.None;
+  if (answer === undefined) return OptionState.None;
+  if (answer !== target) return OptionState.NotSelected;
 
   return answer === correctAnswer ? OptionState.Correct : OptionState.Incorrect;
 }
@@ -148,15 +159,15 @@ export default function GameLevel({
   return (
     <div className="flex flex-col items-center">
       <div
-        className="font-semibold leading-tight text-2xl md:text-5xl text-center mb-1"
+        className="font-bold leading-tight text-2xl md:text-3xl text-center mb-1"
         style={{ fontFamily: `"Ginto", sans-serif` }}
       >
         {levelData.title}
       </div>
-      <div className="text-center text-lg md:text-3xl text-zinc-300 font-semibold mb-10">
+      <div className="text-center text-lg md:text-xl text-zinc-300 font-semibold mb-10">
         {levelData.levelText}
       </div>
-      <div className="grid grid-cols-2 pt-4 pb-12">
+      <div className="grid grid-cols-2 pt-1 pb-12">
         <div
           className={classNames("transition-all duration-300", {
             "transform translate-x-1/2": hasAnswered,
@@ -194,10 +205,13 @@ export default function GameLevel({
           invisible: !hasAnswered,
         })}
       >
-        <p className="font-mono text-center p-6 leading-loose">
+        <p className="font-mono text-center leading-loose text-sm">
           Press and hold{" "}
+          {/* TODO the background toggling doesn't work sometimes */}
+          {/* TODO don't show this on mobile */}
           <span
-            className={classNames("font-bold bg-slate-400/50 p-2 rounded-md", {
+            className={classNames("font-bold p-2 rounded-md", {
+              "bg-slate-400/50": !compare,
               "text-black": compare,
               "bg-slate-200/100": compare,
             })}
@@ -211,7 +225,7 @@ export default function GameLevel({
           to continue
         </p>
 
-        <div className="w-full flex justify-center gap-4">
+        <div className="w-full flex justify-center gap-4 pt-4">
           <AppButton
             text="Compare"
             onMouseDown={() => setCompareDown(true)}

@@ -20,24 +20,22 @@ export default function Splash({ onStart }: { onStart: () => void }) {
           height="837"
         />
       </div>
-
-      <div className="flex flex-col justify-center h-screen max-w-3xl my-auto pl-6 md:pl-32">
+      <div className="flex flex-col justify-center h-screen max-w-2xl my-auto pl-6 md:pl-32">
         <Image
           className="mb-2 mt-1"
-          src="/discord-logo-white.svg"
+          src="/discord-logo-eagle-eye.svg"
           alt="Discord Logo"
-          width="208"
-          height="40"
+          width="122"
+          height="20"
         />
-
         <div
-          className="uppercase font-extrabold leading-tight mb-4 text-2xl md:text-5xl"
+          className="uppercase font-extrabold leading-tight mb-6 text-2xl md:text-3xl"
           style={{ fontFamily: `"Ginto", sans-serif` }}
         >
           Eagle Eye
           <br /> Challenge
         </div>
-        <p className="text-2xl md:text-4xl mb-8">
+        <p className="text-2xl md:text-6xl mb-4">
           How good is your eye for design detail?
         </p>
         <p className="mb-4 leading-relaxed text-lg">

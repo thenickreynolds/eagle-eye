@@ -63,10 +63,19 @@ export default function Game() {
       {/* TODO List
           P0
           - improve transitions
+          - "incorrect" flashes quickly on first question?
+          - reexport correct/incorrect at higher res
+          - confetti on game over
+
           
           P1
           - post result to chat when game over
           - leaderboard
+          - use Discord's monofont
+          - make the sprites on landing page slide right when getting smaller and maybe all move independently
+          - update mute icon to deafen icon from Discord
+          - make images not resize when you load-in - maybe have a placeholder
+          - replace favicon with white/black versions
 
           P2
           - fix the way I force dark theme colors :(
@@ -80,13 +89,12 @@ export default function Game() {
         {gameState === GameState.Playing && (
           <div className="flex flex-col min-h-screen">
             <div className="grid grid-cols-2 items-start m-12">
-              {/* TODO replace with eagle eye logo */}
               <Image
-                className="mb-2 mt-2"
-                src="/discord-logo-white.svg"
+                className="mb-2 mt-1"
+                src="/discord-logo-eagle-eye.svg"
                 alt="Discord Logo"
-                width="208"
-                height="40"
+                width="122"
+                height="20"
               />
 
               <Score score={score} />
@@ -104,7 +112,7 @@ export default function Game() {
         {gameState === GameState.End && (
           <div className="flex flex-col items-center justify-center h-screen gap-6">
             <div
-              className="uppercase font-extrabold leading-tight mb-4 text-2xl md:text-5xl"
+              className="uppercase font-extrabold leading-tight mb-6 text-2xl md:text-3xl"
               style={{ fontFamily: `"Ginto", sans-serif` }}
             >
               Game Over

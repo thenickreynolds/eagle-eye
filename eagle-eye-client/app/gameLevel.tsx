@@ -29,44 +29,40 @@ function Option({
   const image =
     optionState === OptionState.Correct ? "/check.png" : "/cross.png";
 
+  const showStatusBanner =
+    optionState === OptionState.Correct ||
+    optionState === OptionState.Incorrect;
+  const showExplanation = optionState !== OptionState.None;
+
   return (
     <div className="relative inline-block mx-2">
-      <div
+      <Image
+        className={classNames(
+          "w-96 rounded-2xl bg-white aspect-[1.3321492007] cursor-pointer transition-shadow shadow-md",
+          {
+            "border-4": showStatusBanner,
+            "border-transparent": !showStatusBanner,
+            "hover:shadow-2xl": onClick !== undefined,
+          }
+        )}
+        style={{
+          borderColor:
+            optionState === OptionState.Correct ? "#2CC771" : "#F8787C",
+        }}
+        src={src}
+        draggable={false}
+        alt={alt}
+        height={1500}
+        width={1126}
         onClick={onClick}
-        className={classNames("select-none", {
-          "cursor-pointer": onClick !== undefined,
-        })}
-      >
-        <Image
-          className={classNames(
-            "w-full max-w-md pointer-events-none rounded-2xl bg-white",
-            {
-              "border-4": optionState !== OptionState.None,
-              "border-transparent": optionState === OptionState.None,
-              "hover:shadow-2xl": onClick !== undefined,
-            }
-          )}
-          style={{
-            borderColor:
-              optionState === OptionState.Correct ? "#2CC771" : "#F8787C",
-          }}
-          src={src}
-          alt={alt}
-          height={1000}
-          width={640}
-        />
-      </div>
+      />
 
       <span
         className={classNames(
           "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity",
           {
-            "opacity-0":
-              optionState === OptionState.None ||
-              optionState === OptionState.NotSelected,
-            "opacity-100":
-              optionState === OptionState.Correct ||
-              optionState === OptionState.Incorrect,
+            "opacity-0": !showStatusBanner,
+            "opacity-100": showStatusBanner,
           }
         )}
       >
@@ -80,8 +76,8 @@ function Option({
         className={classNames(
           "absolute bottom-0 w-full transform translate-y-1/2 flex flex-row items-center justify-center transition-opacity delay-300",
           {
-            "opacity-0": optionState === OptionState.None,
-            "opacity-100": optionState !== OptionState.None,
+            "opacity-0": !showExplanation,
+            "opacity-100": showExplanation,
           }
         )}
       >

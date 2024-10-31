@@ -63,18 +63,13 @@ export default function Game() {
       {/* TODO List
           P0
           - improve transitions
-          - "incorrect" flashes quickly on first question?
           - confetti on game over
 
-          
           P1
           - post result to chat when game over
           - leaderboard
           - use Discord's monofont
           - make the sprites on landing page slide right when getting smaller and maybe all move independently
-          - update mute icon to deafen icon from Discord
-          - make images not resize when you load-in - maybe have a placeholder
-          - replace favicon with white/black versions
 
           P2
           - fix the way I force dark theme colors :(
